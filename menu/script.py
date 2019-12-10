@@ -57,3 +57,5 @@ if count >= 3:
     print("割引が適用される。")
 
 print ("合計は"+ str(result) +"円です。")
+
+#test
