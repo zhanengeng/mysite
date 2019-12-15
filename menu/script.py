@@ -58,4 +58,4 @@ if count >= 3:
 
 print ("合計は"+ str(result) +"円です。")
 
-#test3
+#test4
