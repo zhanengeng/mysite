@@ -12,7 +12,7 @@ for value in range(1,21):
 print(list(values))
 
 
-# 方法３：列表解析
+# 方法３：列表解析 (列表生成器)
 '''values = [value for value in range(1,21)]
 print(values)'''
 
