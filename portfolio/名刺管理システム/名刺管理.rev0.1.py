@@ -181,3 +181,4 @@ def show_info(card):
 #=======実行=========
 if __name__ == "__main__":
     main()
+
