@@ -20,7 +20,12 @@ def sendMsg():
         print("-----test--sedMsg-----")
         time.sleep(0.2)
 
+udpSocket = None
+destIp = ""
+destPort = 0
+
 def main():
+    global udpsocket, destIp, destPort
     # 创建套接字
     udpsocket = socket(AF_INET, SOCK_DGRAM)
     # 绑定本地信息(ip,port)
