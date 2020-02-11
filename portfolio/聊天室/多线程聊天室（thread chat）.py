@@ -17,6 +17,15 @@ def sendMsg():
         udpsocket.sendto(send_msg.encode("utf-8"), (destIp, destPort))
         # print("-----test--sedMsg-----")
 
+def get_host_ip(udpsocket):
+    """查询本机ip地址.return: ip"""
+    try:
+        udpsocket.connect(('8.8.8.8', 80))
+        ip = udpsocket.getsockname()[0]
+    finally:
+        udpsocket.close()
+    return ip
+
 udpsocket = None
 destIp = ""
 destPort = 0
@@ -29,8 +38,8 @@ def main():
     test_port = 1234           #test_port信息可在1024~65535间随意设定
     udpsocket.bind(("",test_port))  
     # 获取对方信息
-    hostname = gethostname()
-    hostip = gethostbyname(hostname)
+    # hostname = gethostname()
+    hostip = get_host_ip(udpsocket)
     destIp = input(f"对方IP(测试用本机IP:{hostip}): ")
     destPort = int(input(f"对方端口(测试用端口:{test_port}): "))
 
