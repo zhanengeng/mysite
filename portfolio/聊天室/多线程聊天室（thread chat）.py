@@ -34,12 +34,11 @@ def main():
     global udpsocket, destIp, destPort
     # 创建套接字
     udpsocket = socket(AF_INET, SOCK_DGRAM)
-    # 绑定本地信息(ip,port)——
+    # 绑定本地信息(ip,port)
     test_port = 1234           #test_port信息可在1024~65535间随意设定
     udpsocket.bind(("",test_port))  
     # 获取对方信息
-    # hostname = gethostname()
-    hostip = get_host_ip(udpsocket)
+    hostip = get_host_ip(udpsocket)  #获取本地ip
     destIp = input(f"对方IP(测试用本机IP:{hostip}): ")
     destPort = int(input(f"对方端口(测试用端口:{test_port}): "))
 
@@ -52,6 +51,5 @@ def main():
     thread2.join()
 
     # print("-----test--end-----")
-
 if __name__ == "__main__":
     main()
