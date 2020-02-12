@@ -10,15 +10,15 @@ ip+port: serverInfo
 """
 def main():
         
-    filename = input("下载文件的名字(如test.jpg): ").encode("utf-8")
+    filename = input("下载文件的名字(如test.jpg): ").encode()
     
     # 导入socket
     udpSocket = socket(AF_INET, SOCK_DGRAM)
-    # 绑定接受地址
+    # 绑定接受地址，不绑也行，作为主动发送方，不必知道自己port。服务器有来电显示（笑）
     # udpSocket.bind("",1234)
 
     # 创建下载请求
-    requestFileDate = struct.pack(f"!H{len(filename)}sb5sb",1,filename,0,"octet".encode("utf-8"),0)   #pack：组包，多字节表示一个值时需要用到。“!”代表了用网络传输，也就是大端。H占两个字节的坑，5s:5字符，b：1字节。
+    requestFileDate = struct.pack(f"!H{len(filename)}sb5sb",1,filename,0,"octet".encode(),0)   #pack：组包，多字节表示一个值时需要用到。“!”代表了用网络传输，也就是大端。H占两个字节的坑，5s:5字符，b：1字节。
     # 发送请求
     udpSocket.sendto(requestFileDate ,("192.168.0.11",69))
 
