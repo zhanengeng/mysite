@@ -6,7 +6,7 @@ def recvMsg():
         #接收信息
         recv_msg = udpsocket.recvfrom(1024) 
         #解码并打印消息
-        msg = recv_msg[0].decode("utf-8")
+        msg = recv_msg[0].decode()  #接到消息要转码
         print(f"\r>>{recv_msg[1]}: {msg}",end="\n<< ")  
         # print("-----test--recvMsg-----")
 
@@ -17,7 +17,8 @@ def sendMsg():
         # if send_msg == "quit":
         #     exit()      #退出功能有问题，以后研究
         # else:
-        udpsocket.sendto(send_msg.encode("utf-8"), (destIp, destPort))
+        udpsocket.sendto(send_msg.encode(), (destIp, destPort))
+        #发送讯息要转码，encode默认转"UTF-8"
         # print("-----test--sedMsg-----")
 
 def get_host_ip():
