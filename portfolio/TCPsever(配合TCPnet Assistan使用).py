@@ -1,12 +1,12 @@
 from socket import *
  
-"""创建服务器"""
+"""创建TCP server"""
  
 # 1.创建套接字（作用是等待呼叫）
 serverSocket = socket(AF_INET, SOCK_STREAM) #TCP
  
 # 2.绑定ip和port（服务器固定，并为接收方，所以绑定）
-serverSocket.bind(("",8888))
+serverSocket.bind(("",8080))
  
 # 3.把socket变成被动监听。
 print("---test--转入监听模式---")
@@ -19,10 +19,14 @@ clientSocket, clientAddr = serverSocket.accept() #accept的返回值为元祖(so
 print("---test--建立连接---")
  
 # 5.收发数据(recv/send)
-recvData = clientSocket.recv(1024)
+recvData = clientSocket.recv(1024).decode()  #收发数据要解码。
 print("---test--收到以下信息---")
  
-print(f"{str(clientAddr)}来信: {recvData.decode()}")
+print(f"{str(clientAddr)}来信: {recvData}")
+
+send_msg = input("发送测试: ").encode()
+clientSocket.send(send_msg)
+print("succeed!")
  
 clientSocket.close()
 serverSocket.close()

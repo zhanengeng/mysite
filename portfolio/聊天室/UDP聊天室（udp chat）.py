@@ -1,5 +1,8 @@
 from socket import *    
 from threading import Thread
+import os
+
+"""udp聊天，面临无法在程序内退出的问题，在21行。"""
 
 def recvMsg():
     while True:
@@ -15,7 +18,10 @@ def sendMsg():
         # 发送信息
         send_msg = input("<< ")
         # if send_msg == "quit":
-        #     exit()      #退出功能有问题，以后研究
+        #     try:
+        #         os._exit()      #退出功能有问题，以后研究
+        #     except Exception:
+        #         exit()
         # else:
         udpsocket.sendto(send_msg.encode(), (destIp, destPort))
         #发送讯息要转码，encode默认转"UTF-8"
@@ -51,6 +57,8 @@ def main():
     #创建多线程         
     thread1 = Thread(target=recvMsg)
     thread2 = Thread(target=sendMsg)
+    # thread1.setDaemon(True)
+    # thread2.setDaemon(True)
     thread1.start()
     thread2.start()
     thread1.join()
