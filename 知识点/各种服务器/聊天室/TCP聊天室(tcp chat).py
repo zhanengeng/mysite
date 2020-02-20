@@ -60,6 +60,7 @@ def main():
     # 1.建立TCP服务器
     # 1.1 socket链接
     sSocket = socket(AF_INET, SOCK_STREAM)
+    sSocket.setsockopt(SOL_SOCKET,SO_REUSEADDR, 1) #服务器以外断开时，端口可立刻被重新利用（不用等待2SML）
 
     # 1.2 绑定地址
     sSocket.bind(("",8080))
