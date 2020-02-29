@@ -1,3 +1,5 @@
+"""适用于服务器和脚本为同一人编写的情况"""
+
 from socket import *
 from multiprocessing import Process
 import re

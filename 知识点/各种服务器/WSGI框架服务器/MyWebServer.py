@@ -26,7 +26,7 @@ class HTTPServer(object):
             cSocket.close()  # 记得在主进程里关闭客户端socket。
 
     def start_response(self, status, script_headers):
-        # WSGI传参
+        """WSGI传参"""
         server_headers = [
             ("Server", "My Server")
         ]
@@ -66,7 +66,7 @@ class HTTPServer(object):
 def main():
     # sys.path.insert(1,WSGI_PYTHON_DIR)
     # 理想启动命令 python3 MyWebServer.py MyWebFramWork:app
-    if len(sys.argv) < 2:
+    if len(sys.argv) < 2: #若没有传参
         sys.exit("-----------------\ninput @ shell:\ncd /Users/zhanengeng/Documents/GitHub/mysite/知识点/各种服务器/WSGI框架服务器\npython3 MyWebServer.py MyWebFramwork:app")
     module_name, app_name = sys.argv[1].split(":")
     #module_name == "MyWebFramWork.py"; app_name == "app"
