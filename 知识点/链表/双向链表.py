@@ -99,10 +99,7 @@ class DoubleLinkList:
         # 和单链表的不同之处在于只需要一根指针
         cur = self.__head
 
-        if self.isEmpty():
-            return
-
-        elif item == self.__head.elem:  # 如果是头节点
+        if item == self.__head.elem:  # 如果是头节点
             self.__head = cur.next
             try:
                 cur.next.prev = None  # 操作后继节点指针
@@ -131,9 +128,8 @@ class DoubleLinkList:
 if __name__ == "__main__":
     dll = DoubleLinkList()
     dll.append(1)
-    # dll.append(2)
-    # dll.append(3)
-    # dll.insert(3, 0)
-    dll.remove(1)
+    dll.append(2)
+    dll.append(3)
+    dll.insert(3, 0)
     dll.remove(1)
     dll.travel()

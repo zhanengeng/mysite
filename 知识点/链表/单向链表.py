@@ -3,7 +3,7 @@
 
 
 class Node:
-    """定义区块"""
+    """定义区块。这个类是给链表SLL用的，用户不会直接调用这个类"""
 
     def __init__(self, elem):  # element是区块保存的数据
         self.elem = elem
@@ -42,7 +42,7 @@ class SingleLinkList:
         new_node = Node(new_elem)
         # new_node.next = self.__head   # 步骤1,new_node.next指向处于起始位的区块。
         # self.__head = new_node    # 步骤2，让起始位指针指向new_node。
-        new_node.next, self.__head = self.__head, new_node
+        new_node.next, self.__head = self.__head, new_node  #合并为一句
         # 空链表也适用
 
     def append(self, new_elem):
@@ -60,7 +60,7 @@ class SingleLinkList:
                 cur = cur.next
             cur.next = new_node
 
-            """不可以用如下写法:
+            """不可以用如下写法,因为需要cur.next来创建两个节点间的联系:
             while cur:
                 cur = cur.next
             cur = new_node"""
@@ -77,7 +77,7 @@ class SingleLinkList:
 
         else:
             for i in range(pos-1):
-                cur = cur.next    # 从0位移动pos-1-1次，此时指向pos位的前一个区块。
+                cur = cur.next    # 从0位移动pos-1次，此时指向pos位的前一个区块。
             new_node.next, cur.next = cur.next, new_node
 
     def search(self, item):
@@ -104,16 +104,9 @@ class SingleLinkList:
                     pre.next = cur.next
                     break
                 else: #若当前区块非目标区块，则前进
-                    # 写法1
-                    pre = cur  # 让pre指向cur(既pre.next)区块
-                    cur = pre.next  # 让cur指向pre的下一个区块
+                    cur = cur.next
+                    pre = pre.next
 
-                    # 写法2，OK
-                    # pre ,cur = cur, cur.next
-
-                    # 以下两种写法同样可以执行。等号右侧的cur和pre.next并没有指向同一片内存。为什么？
-                    # pre ,cur = cur, pre.next
-                    # cur, pre = pre.next, cur
 
 
 if __name__ == "__main__":
